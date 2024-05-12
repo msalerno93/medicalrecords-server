@@ -1,8 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
-// const Contact = require("./Models/contactModel");
 const cors = require("cors")
 const dotenv = require("dotenv");
+const { getProvider, createProvider } = require("./Routes/providerRoutes");
 dotenv.config();
 
 mongoose.set("strictQuery", false);
@@ -12,6 +12,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors())
 
 app.get('/', (req, res) => res.send('Hello World!'))
+
+app.get('/provider', getProvider)
+app.post('/addprovider', createProvider)
 
 const startServer = async () => {
     try {
