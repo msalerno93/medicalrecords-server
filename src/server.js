@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors")
 const dotenv = require("dotenv");
-const { getProvider, createProvider } = require("./Routes/providerRoutes");
+const { getAllProviders, createProvider, getSingleProvider, editProvider, deleteProvider } = require("./Routes/providerRoutes");
 dotenv.config();
 
 mongoose.set("strictQuery", false);
@@ -13,8 +13,20 @@ app.use(cors())
 
 app.get('/', (req, res) => res.send('Hello World!'))
 
-app.get('/provider', getProvider)
+
+//              PROVIDER ROUTES
+
+//GET ALL PROVIDERS
+app.get('/provider', getAllProviders)
+//CREATE NEW PROVIDER
 app.post('/addprovider', createProvider)
+//GET SINGULAR PROVIDER
+app.get('/providers/:id', getSingleProvider)
+//EDIT A PROVIDER
+app.put('/providers/:id', editProvider)
+//DELETE PROVIDER
+app.delete('/providers/:id', deleteProvider)
+
 
 const startServer = async () => {
     try {
