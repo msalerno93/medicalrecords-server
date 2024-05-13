@@ -37,7 +37,7 @@ const patientSchema = new mongoose.Schema({
   insuranceName: {
     type: String,
     required: true
-  },
+  }
 });
 
 module.exports = mongoose.model("Patient", patientSchema);
