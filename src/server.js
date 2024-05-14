@@ -5,7 +5,7 @@ const dotenv = require("dotenv");
 const { getAllProviders, createProvider, getSingleProvider, editProvider, deleteProvider } = require("./Routes/providerRoutes");
 const { createPatient, getAllPatients, getSinglePatient, editPatient, deletePatient } = require("./Routes/patientRoutes");
 const { getAllInsurances, getSingleInsurance, createInsurance, editInsurance, deleteInsurance } = require("./Routes/insuranceRoutes");
-const { createNote, getAllNotes } = require("./Routes/noteRoutes");
+const { createNote, getSingleNote } = require("./Routes/noteRoutes");
 dotenv.config();
 
 mongoose.set("strictQuery", false);
@@ -59,7 +59,7 @@ app.put('/insurance/:id', editInsurance)
 app.delete('/insurance/:id', deleteInsurance)
 
 app.post('/addnote', createNote)
-app.get('/:id/note', getAllNotes)
+app.get('/notes/:id', getSingleNote)
 
 
 const startServer = async () => {

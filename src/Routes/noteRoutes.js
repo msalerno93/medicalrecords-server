@@ -2,16 +2,16 @@ const Note = require("../Models/noteModel.js");
 const Patient = require("../Models/patientModel.js");
 
 //GET ALL NOTES - /notes
-const getAllNotes = async (req, res) => {
-  try {
-    if (req.body.params == Note.patientId) {
-      const result = await Note.find();
-      res.send({ notes: result});
-    }
-  } catch (error) {
-    res.status(500).json({ error: "There was an error that occured" });
-  }
-};
+// const getAllNotes = async (req, res) => {
+//   try {
+//     if (req.body.params == Note.patientId) {
+//       const result = await Note.find();
+//       res.send({ notes: result});
+//     }
+//   } catch (error) {
+//     res.status(500).json({ error: "There was an error that occured" });
+//   }
+// };
 
 //CREATE A SINGLE NOTE - /addnote
 const createNote = async (req, res) => {
@@ -25,19 +25,21 @@ const createNote = async (req, res) => {
 };
 
 //GET A SINGLE NOTE - SHOWPAGE
-// const getSingleNote = async (req, res) => {
-//   try {
-//     const noteId = req.params.id;
-//     const note = await Note.findById(noteId);
-//     if (!note) {
-//       res.status(404).json({ error: "Note not found" });
-//     } else {
-//       res.json({ note });
-//     }
-//   } catch (error) {
-//     res.status(500).json({ error: "Something went wrong!" });
-//   }
-// };
+const getSingleNote = async (req, res) => {
+  try {
+    const id = req.params.id;
+    // const patientId = Note.patientId
+    const note = await Note.findById(id)
+    console.log(id);
+      if (!note) {
+        res.status(404).json({ error: "Note not found" });
+      } else {
+        res.json({ note });
+      }
+  } catch (error) {
+    res.status(500).json({ error: "Something went wrong!" });
+  }
+};
 
 //EDIT A NOTE
 // const editNote = async (req, res) => {
@@ -62,9 +64,9 @@ const createNote = async (req, res) => {
 // };
 
 module.exports = {
-  getAllNotes,
+  // getAllNotes,
   createNote,
-  //   getSingleNote,
+  getSingleNote,
   //   editNote,
   //   deleteNote,
 };
