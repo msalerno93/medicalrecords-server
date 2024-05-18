@@ -45,6 +45,7 @@ const patientSchema = new mongoose.Schema({
   notes: [{
     note: String,
     provider: String,
+    date: String
   }]
 });
 
