@@ -19,15 +19,56 @@ const getNotesByPatient = async (req, res) => {
 };
 
 const addNoteByPatient = async (req, res) => {
+  const id = req.params.id
+  const newNote = req.body
   try {
-    const id = req.params.id
     const result = await Patient.findById(id);
-    const newNote = req.body
-    result.notes.push(newNote)
+    const updatedNotes = [...result.notes, newNote]
+    result.notes = updatedNotes
     const addedNote = await result.save()
- 
-    console.log(result);
-    res.send(addedNote)
+     res.send(addedNote)
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+const deleteNoteByPatient = async(req, res) => {
+  const {id, nId} = req.params
+  try {
+    const patient = await Patient.findById(id);
+    if(!patient){
+      return res.status(404).send("Person not found")
+    }
+    const note = patient.notes.id(nId)
+    if(!note){
+      return res.status(404).send("Note not found")
+    }
+    console.log(note);
+
+    note.deleteOne({ _id: nId })
+    await patient.save()
+    res.status(200).send("Its deleted")
+
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+const editNoteByPatient = async (req, res) => {
+  const {id, nId} = req.params
+  const updateNote = req.body
+
+  try {
+    const patient = await Patient.findById(id);
+    if(!patient){
+      return res.status(404).send("Person not found")
+    }
+    const note = patient.notes.id(nId)
+    if(!note){
+      return res.status(404).send("Note not found")
+    }
+    // const result = await note.replaceOne({ _id: nId }, updateNote);
+    res.status(201).send(result)
   } catch (error) {
     console.log(error);
   }
@@ -89,5 +130,7 @@ module.exports = {
   editPatient,
   deletePatient,
   getNotesByPatient,
-  addNoteByPatient
+  addNoteByPatient,
+  deleteNoteByPatient,
+  editNoteByPatient
 };

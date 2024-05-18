@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const cors = require("cors")
 const dotenv = require("dotenv");
 const { getAllProviders, createProvider, getSingleProvider, editProvider, deleteProvider } = require("./Routes/providerRoutes");
-const { createPatient, getAllPatients, getSinglePatient, editPatient, deletePatient, getNotesByPatient, addNoteByPatient } = require("./Routes/patientRoutes");
+const { createPatient, getAllPatients, getSinglePatient, editPatient, deletePatient, getNotesByPatient, addNoteByPatient, deleteNoteByPatient, editNoteByPatient } = require("./Routes/patientRoutes");
 const { getAllInsurances, getSingleInsurance, createInsurance, editInsurance, deleteInsurance } = require("./Routes/insuranceRoutes");
 const { createNote, getSingleNote } = require("./Routes/noteRoutes");
 dotenv.config();
@@ -40,6 +40,8 @@ app.get('/patient/:id', getSinglePatient)
 //GET PATIENT NOTES
 app.get('/patient/:id/notes', getNotesByPatient)
 app.post('/patient/:id/notes/add', addNoteByPatient)
+app.delete('/patient/:id/notes/:nId/delete', deleteNoteByPatient)
+app.put('/patient/:id/notes/:nId/edit', editNoteByPatient)
 //CREATE NEW PATIENT
 app.post('/addpatient', createPatient)
 //EDIT A PATIENT
