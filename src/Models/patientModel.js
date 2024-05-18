@@ -9,6 +9,10 @@ const patientSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  birthDate: {
+    type: String,
+    required: true
+  },
   phoneNumber: {
     type: String,
     required: true
@@ -37,7 +41,11 @@ const patientSchema = new mongoose.Schema({
   insuranceName: {
     type: String,
     required: true
-  }
+  },
+  notes: [{
+    note: String,
+    provider: String,
+  }]
 });
 
 module.exports = mongoose.model("Patient", patientSchema);

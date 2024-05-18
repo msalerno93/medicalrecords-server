@@ -28,15 +28,16 @@ const createNote = async (req, res) => {
 const getSingleNote = async (req, res) => {
   try {
     const id = req.params.id;
-    // const patientId = Note.patientId
-    const note = await Note.findById(id)
-    console.log(id);
+
+    const note = await Patient.id
+    console.log(Patient);
       if (!note) {
         res.status(404).json({ error: "Note not found" });
       } else {
         res.json({ note });
       }
   } catch (error) {
+    console.log(error);
     res.status(500).json({ error: "Something went wrong!" });
   }
 };

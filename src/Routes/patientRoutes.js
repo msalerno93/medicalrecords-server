@@ -10,6 +10,29 @@ const getAllPatients = async (req, res) => {
   }
 };
 
+const getNotesByPatient = async (req, res) => {
+  try {
+    const id = req.params.id
+    const result = await Patient.findById(id);
+    res.send(result.notes)
+  } catch (error) {}
+};
+
+const addNoteByPatient = async (req, res) => {
+  try {
+    const id = req.params.id
+    const result = await Patient.findById(id);
+    const newNote = req.body
+    result.notes.push(newNote)
+    const addedNote = await result.save()
+ 
+    console.log(result);
+    res.send(addedNote)
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 //CREATE A SINGLE PATIENT - /addpatient
 const createPatient = async (req, res) => {
   const patient = new Patient(req.body);
@@ -17,6 +40,7 @@ const createPatient = async (req, res) => {
     await patient.save();
     res.status(201).json({ patient });
   } catch (error) {
+    console.log(error);
     res.status(400).json({ error: "Unable to create Patient" });
   }
 };
@@ -64,4 +88,6 @@ module.exports = {
   getSinglePatient,
   editPatient,
   deletePatient,
+  getNotesByPatient,
+  addNoteByPatient
 };

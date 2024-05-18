@@ -13,6 +13,10 @@ const providerSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  faxNumber: {
+    type: String,
+    required: true
+  },
   street: {
     type: String,
     required: true
