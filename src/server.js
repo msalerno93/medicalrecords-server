@@ -30,7 +30,7 @@ const {
   deleteNoteByPatient,
   editNoteByPatient,
 } = require("./Routes/patientNotesRoutes");
-const { createUser, signInUser, signOutUser, getUserProfile, updateUserProfile } = require("./Routes/userRoutes");
+const { createUser, signInUser, signOutUser, getUserProfile, updateUserProfile, getAllUsers } = require("./Routes/userRoutes");
 const { auth } = require("./Middleware/auth");
 dotenv.config();
 
@@ -49,6 +49,7 @@ app.post("/user/signin", signInUser);
 app.post('user/signout', auth, signOutUser)
 app.get('user/profile', auth, getUserProfile);
 app.put('user//profile', auth, updateUserProfile);
+app.get('/user/admin/allusers', auth, getAllUsers)
 
 //              PROVIDER ROUTES
 

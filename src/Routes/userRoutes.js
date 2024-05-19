@@ -113,4 +113,16 @@ const updateUserProfile = async (req, res) => {
   }
 };
 
-module.exports = { createUser, signInUser, signOutUser, getUserProfile, updateUserProfile };
+const getAllUsers = async (req, res) => {
+  try {
+    if (req.user.role !== 'admin') {
+      return res.status(403).json({ message: 'Access denied: Admins only' });
+    }
+    const users = await User.find().select('-password');
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
+module.exports = { getAllUsers, createUser, signInUser, signOutUser, getUserProfile, updateUserProfile };
