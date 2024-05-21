@@ -13,7 +13,6 @@ const insuranceSchema = new mongoose.Schema({
   city: String,
   state: String,
   zipCode: Number,
-  occupation: String,
   faxNumber: String
 });
 
