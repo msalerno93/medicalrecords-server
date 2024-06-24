@@ -44,62 +44,62 @@ app.use(cors());
 app.get("/", (req, res) => res.send("Hello World!"));
 
 //              USER ROUTES
-app.post("/user/signup", createUser);
-app.post("/user/signin", signInUser);
-app.post('user/signout', auth, signOutUser)
-app.get('user/profile', auth, getUserProfile);
-app.put('user//profile', auth, updateUserProfile);
-app.get('/user/admin/allusers', auth, getAllUsers)
+// app.post("/user/signup", createUser);
+// app.post("/user/signin",  signInUser);
+// app.post('user/signout',  signOutUser)
+// app.get('user/profile',  getUserProfile);
+// app.put('user//profile',  updateUserProfile);
+// app.get('/user/admin/allusers',  getAllUsers)
 
 //              PROVIDER ROUTES
 
 //GET ALL PROVIDERS
-app.get("/providers", auth, getAllProviders);
+app.get("/providers",  getAllProviders);
 //CREATE NEW PROVIDER
-app.post("/addprovider", auth, createProvider);
+app.post("/addprovider",  createProvider);
 //GET SINGULAR PROVIDER
-app.get("/provider/:id", auth, getSingleProvider);
+app.get("/provider/:id",  getSingleProvider);
 //EDIT A PROVIDER
-app.put("/provider/:id", auth, editProvider);
+app.put("/provider/:id",  editProvider);
 //DELETE PROVIDER
-app.delete("/provider/:id", auth, deleteProvider);
+app.delete("/provider/:id",  deleteProvider);
 
 //              PATIENT ROUTES
 
 //GET ALL PATIENTS
-app.get("/patients", auth, getAllPatients);
+app.get("/patients",  getAllPatients);
 //GET SINGULAR PATIENT
-app.get("/patient/:id", auth, getSinglePatient);
+app.get("/patient/:id",  getSinglePatient);
 //CREATE NEW PATIENT
-app.post("/addpatient", auth, createPatient);
+app.post("/addpatient",  createPatient);
 //EDIT A PATIENT
-app.put("/patient/:id", auth, editPatient);
+app.put("/patient/:id",  editPatient);
 //DELETE PROVIDER
-app.delete("/patient/:id", auth, deletePatient);
+app.delete("/patient/:id",  deletePatient);
 
 //              PATIENT NOTES ROUTES
 
 //GET ALL SINGULAR PATIENTS NOTES
-app.get("/patient/:id/notes", auth, getNotesByPatient);
+app.get("/patient/:id/notes",  getNotesByPatient);
 //ADD A NEW NOTE TO SPECIFIC PATIENT
-app.post("/patient/:id/notes/add", auth, addNoteByPatient);
+app.post("/patient/:id/notes/add",  addNoteByPatient);
 //DELETE SPECIFIC NOTE FOR PATIENT
-app.delete("/patient/:id/notes/:nId/delete", auth, deleteNoteByPatient);
+app.delete("/patient/:id/notes/:nId/delete",  deleteNoteByPatient);
 //EDIT A NOTE FOR PATIENT
-app.put("/patient/:id/notes/:nId/edit", auth, editNoteByPatient);
+app.put("/patient/:id/notes/:nId/edit",  editNoteByPatient);
 
 //              INSURANCE ROUTES
 
 //GET ALL INSURANCES
-app.get("/insurances", auth, getAllInsurances);
+app.get("/insurances",  getAllInsurances);
 //GET SINGULAR INSURANCE
-app.get("/insurance/:id", auth, getSingleInsurance);
+app.get("/insurance/:id",  getSingleInsurance);
 //CREATE NEW INSURANCE
-app.post("/addinsurance", auth, createInsurance);
+app.post("/addinsurance",  createInsurance);
 //EDIT A INSURANCE
-app.put("/insurance/:id", auth, editInsurance);
+app.put("/insurance/:id",  editInsurance);
 //DELETE PROVIDER
-app.delete("/insurance/:id", auth, deleteInsurance);
+app.delete("/insurance/:id",  deleteInsurance);
 
 const startServer = async () => {
   try {
